@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hussain Ahmed — Data & Machine Learning</title>
+<meta name="description" content="Hussain Ahmed — Computer Science graduate building data and machine learning projects: AutoML API, NYC taxi trip-duration model, Arabic legal RAG assistant.">
+<meta property="og:title" content="Hussain Ahmed — Data & Machine Learning">
+<meta property="og:description" content="AutoML API, 1.46M-trip XGBoost model, Arabic NLP. Open to AI, ML and data roles — remote or relocation.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://avatars.githubusercontent.com/HussainAhmed75?s=400">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1220'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='28' fill='%2322d3ee' text-anchor='middle'%3EHA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1220; --bg2:#0f1a2e; --card:#121f36; --card2:#16274a; --line:#22385f;
+  --text:#e6edf7; --muted:#9fb3cf; --dim:#6f86a8;
+  --cyan:#22d3ee; --amber:#f5a524; --green:#34d399; --violet:#a78bfa;
+  --radius:18px; --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+::selection{background:rgba(34,211,238,.3)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(11,18,32,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:10px}
+.logo b{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#06101f;font-size:14px}
+.links{display:flex;gap:26px;font-size:14.5px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;width:40px;height:40px;font-size:18px;cursor:pointer}
+
+/* hero */
+header{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%}
+.glow{position:absolute;width:620px;height:620px;border-radius:50%;filter:blur(110px);opacity:.28;pointer-events:none}
+.g1{background:var(--cyan);top:-180px;right:-160px}.g2{background:var(--violet);top:30%;left:-320px;opacity:.12}
+.hero{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding-top:90px;padding-bottom:60px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--green);background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);padding:6px 12px;border-radius:999px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(52,211,153,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.05;font-weight:800;letter-spacing:-1.5px;margin:18px 0 10px}
+h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-size:clamp(18px,2.4vw,24px);color:var(--muted);min-height:1.6em}
+.role .typed{color:var(--text);font-weight:600}
+.caret{display:inline-block;width:2px;height:1em;background:var(--cyan);vertical-align:-3px;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{margin:20px 0 30px;color:var(--muted);font-size:17px;max-width:600px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);transition:transform .2s,border-color .2s,background .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.btn.primary{background:linear-gradient(135deg,var(--cyan),#38bdf8);color:#04111f;border:none}
+.btn svg{width:18px;height:18px}
+.avatar-box{position:relative;justify-self:center}
+.avatar{width:280px;height:280px;border-radius:32px;object-fit:cover;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.avatar-fb{display:grid;place-items:center;font-size:72px;font-weight:800;background:linear-gradient(135deg,var(--card2),var(--card));color:var(--cyan)}
+.avatar-ring{position:absolute;inset:-12px;border-radius:40px;border:1px dashed rgba(34,211,238,.35);animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.chip-float{position:absolute;background:rgba(18,31,54,.92);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:12.5px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.chip-float b{color:var(--cyan)}
+.cf1{top:16px;left:-58px}.cf2{bottom:30px;right:-56px}.cf3{bottom:-18px;left:-24px}
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:var(--dim);font-size:12px;letter-spacing:2px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-30px;position:relative;z-index:2}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.stat .n{font-size:32px;font-weight:800;color:var(--text)}
+.stat .n em{font-style:normal;color:var(--cyan)}
+.stat p{color:var(--muted);font-size:14px}
+
+/* sections */
+section{padding:100px 0}
+.eyebrow{font-family:"JetBrains Mono",monospace;color:var(--cyan);font-size:13px;letter-spacing:1px}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.8px;margin:6px 0 14px;font-weight:800}
+.sub{color:var(--muted);max-width:640px;margin-bottom:42px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:40px}
+.about p{color:var(--muted);margin-bottom:14px;font-size:16.5px}
+.about p b{color:var(--text);font-weight:600}
+.facts{align-self:start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.fact{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.fact:last-child{border:none}
+.fact span{color:var(--dim)}
+.fact b{font-weight:600;text-align:right}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.proj{position:relative;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;overflow:hidden}
+.proj:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.55);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.proj.wide{grid-column:span 2}
+.proj.feature{grid-column:span 2;display:grid;grid-template-columns:1.05fr .95fr;gap:28px}
+.ptag{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-family:"JetBrains Mono",monospace;color:var(--amber);margin-bottom:10px}
+.ptag.live{color:var(--green)}.ptag.wip{color:var(--violet)}
+.proj h3{font-size:22px;margin-bottom:8px;letter-spacing:-.3px}
+.proj p{color:var(--muted);font-size:15px}
+.proj ul{margin:12px 0 0 18px;color:var(--muted);font-size:14.5px}
+.proj li{margin:5px 0}
+.tech{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 18px}
+.tech span{font-size:12.5px;padding:4px 10px;border-radius:999px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.22);color:#bdeffa}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 4px}
+.metric{background:rgba(11,18,32,.6);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.metric b{display:block;font-size:20px;color:var(--cyan)}
+.metric small{color:var(--dim);font-size:12px}
+.plinks{margin-top:auto;display:flex;gap:16px;font-size:14px;font-weight:600}
+.plinks a{display:inline-flex;align-items:center;gap:6px;color:var(--cyan)}
+.plinks a:hover{text-decoration:underline}
+.plinks svg{width:16px;height:16px}
+/* pipeline diagram */
+.pipe{background:rgba(11,18,32,.65);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;align-self:center}
+.step{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:14px;opacity:.55;transition:opacity .4s,border-color .4s,transform .4s}
+.step.on{opacity:1;border-color:var(--cyan);transform:translateX(4px)}
+.step i{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(34,211,238,.12);color:var(--cyan);font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12px}
+.step small{display:block;color:var(--dim);font-size:12px}
+/* nyc chart */
+.bars{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.bar{display:grid;grid-template-columns:70px 1fr 54px;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.bar .t{height:10px;border-radius:6px;background:var(--line);overflow:hidden}
+.bar .t div{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.bar b{color:var(--text);font-family:"JetBrains Mono",monospace;font-size:12.5px;text-align:right}
+
+/* experience */
+.timeline{position:relative;margin-left:8px}
+.timeline:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--cyan),var(--violet),transparent)}
+.job{position:relative;padding:0 0 34px 42px}
+.job:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan)}
+.job.now:before{background:var(--cyan);box-shadow:0 0 0 6px rgba(34,211,238,.15)}
+.job .when{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--cyan)}
+.job h3{font-size:19px;margin:2px 0}
+.job .org{color:var(--muted);font-size:14.5px;margin-bottom:8px}
+.job ul{margin-left:18px;color:var(--muted);font-size:15px}
+.job li{margin:4px 0}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.sk h4{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sk h4 i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-style:normal;background:rgba(167,139,250,.12);color:var(--violet);font-size:15px}
+.sk div{display:flex;flex-wrap:wrap;gap:7px}
+.sk span{font-size:13px;padding:5px 11px;border-radius:9px;background:var(--bg2);border:1px solid var(--line);color:var(--text)}
+
+/* certs */
+.certs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.cert{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.cert .ic{flex:none;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:rgba(245,165,36,.12);color:var(--amber);font-weight:800;font-size:13px}
+.cert b{display:block;font-size:15px}
+.cert small{color:var(--dim);font-size:13px}
+.achv{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.ach{background:linear-gradient(135deg,rgba(34,211,238,.1),rgba(167,139,250,.08));border:1px solid var(--line);border-radius:16px;padding:18px}
+.ach b{font-size:16px}
+.ach p{color:var(--muted);font-size:14px;margin-top:4px}
+
+/* contact */
+.contact{background:linear-gradient(135deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:26px;padding:48px;text-align:center;position:relative;overflow:hidden}
+.contact h2{margin-bottom:10px}
+.contact p{color:var(--muted);max-width:560px;margin:0 auto 26px}
+.contact .cta{justify-content:center}
+.copy-toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--green);color:#04111f;font-weight:600;padding:10px 18px;border-radius:10px;opacity:0;transition:.3s;pointer-events:none;z-index:60}
+.copy-toast.show{opacity:1;transform:translate(-50%,0)}
+footer{padding:36px 0 48px;color:var(--dim);font-size:14px;text-align:center}
+
+/* responsive */
+@media (max-width:920px){
+  .hero{grid-template-columns:1fr;text-align:left;gap:36px}
+  .avatar-box{justify-self:start}
+  .avatar{width:200px;height:200px;border-radius:26px}
+  .cf1{left:auto;right:-40px;top:10px}.cf2{right:-40px}.cf3{left:-10px}
+  .about,.proj.feature{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr}.proj.feature,.proj.wide{grid-column:auto}
+  .stats{margin-top:10px}
+  .skills{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .achv{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:rgba(11,18,32,.97);border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .links a{padding:14px 20px;border-top:1px solid var(--line)}
+  .menu-btn{display:block}
+  section{padding:72px 0}
+  .skills,.certs{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(3,1fr)}
+  .contact{padding:32px 20px}
+  .chip-float{display:none}
+  .avatar-box{justify-self:center}
+  .scroll-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo"><b>HA</b> Hussain Ahmed</a>
+    <div class="links" id="links">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+</nav>
+
+<header id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="wrap hero">
+    <div>
+      <span class="badge"><i></i>Open to AI, ML &amp; data roles — remote or relocation</span>
+      <h1>Hi, I'm <span>Hussain Ahmed</span></h1>
+      <div class="role">I build <span class="typed" id="typed">machine learning systems</span><span class="caret"></span></div>
+      <p class="lead">Computer Science graduate from Egypt. I turn raw data into models people can actually use — from an AutoML API that tests 10+ models in one request to an XGBoost model trained on 1.46M taxi trips. Currently a Technical Support Engineer at Telecom Egypt (WE).</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="https://github.com/HussainAhmed75" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/hussian-ahmed" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0Z"/></svg>LinkedIn</a>
+      </div>
+    </div>
+    <div class="avatar-box">
+      <div class="avatar-ring"></div>
+      <img class="avatar" src="https://avatars.githubusercontent.com/HussainAhmed75?s=560" alt="Hussain Ahmed" width="280" height="280" onerror="this.outerHTML='<div class=&quot;avatar avatar-fb&quot;>HA</div>'">
+      <div class="chip-float cf1 mono"><b>R²</b> 0.64 on unseen trips</div>
+      <div class="chip-float cf2 mono"><b>10+</b> models per request</div>
+      <div class="chip-float cf3 mono"><b>500+</b> problems solved</div>
+    </div>
+  </div>
+  </header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat reveal"><div class="n"><span data-count="1.46" data-dec="2">0</span><em>M</em></div><p>NYC taxi trips cleaned &amp; modeled</p></div>
+    <div class="stat reveal"><div class="n"><span data-count="10">0</span><em>+</em></div><p>models compared by my AutoML API</p></div>
+    <div class="stat reveal"><div class="n"><span data-count="500">0</span><em>+</em></div><p>algorithmic problems solved</p></div>
+    <div class="stat reveal"><div class="n"><span data-count="9">0</span></div><p>certifications in AI, data &amp; networking</p></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="reveal">
+      <div class="eyebrow">// about me</div>
+      <h2>From support tickets to ML pipelines</h2>
+      <p>I'm a <b>Computer Science graduate</b> who enjoys the full path of a data problem: cleaning messy data, engineering features, comparing models honestly, and shipping something usable — an API, a dashboard or a demo.</p>
+      <p>By day I work as a <b>Technical Support Engineer at Telecom Egypt (WE)</b>, diagnosing network and service issues for customers. That job taught me to debug systematically and explain technical things simply — two skills I bring to every ML project.</p>
+      <p>Right now I'm focused on <b>Arabic NLP and retrieval-augmented generation</b>, and I'm looking for my first role in AI, machine learning or data — in Egypt, remotely, or abroad.</p>
+    </div>
+    <div class="facts reveal">
+      <div class="fact"><span>Based in</span><b>Egypt · open to relocation</b></div>
+      <div class="fact"><span>Education</span><b>B.Sc. Computer Science, 2025</b></div>
+      <div class="fact"><span>Currently</span><b>Technical Support Engineer @ WE</b></div>
+      <div class="fact"><span>Focus</span><b>ML · Data · Arabic NLP</b></div>
+      <div class="fact"><span>Languages</span><b>Arabic (native) · English</b></div>
+      <div class="fact"><span>Looking for</span><b>AI / ML / Data roles</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="background:linear-gradient(180deg,transparent,rgba(15,26,46,.6),transparent)">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">// selected work</div>
+      <h2>Projects</h2>
+      <p class="sub">Real projects with real numbers. The code ones are on GitHub, each with a README explaining what I did and what I'd improve.</p>
+    </div>
+    <div class="projects">
+
+      <article class="proj feature reveal">
+        <div>
+          <div class="ptag live">● FEATURED · API</div>
+          <h3>AutoML API</h3>
+          <p>Upload a CSV or Excel file, pick the target column, and get back the best model and a full report — in one request.</p>
+          <ul>
+            <li>Detects classification vs regression from the target's values, cleans the data and engineers date features.</li>
+            <li>Compares 10+ models with cross-validation and tunes the best one with Optuna (optional nested CV).</li>
+            <li>Writes a <b>decisions log</b>: every automatic choice is reported with its reason and can be overridden.</li>
+            <li>Returns a PDF report with charts or JSON; connected to n8n workflows through ngrok.</li>
+          </ul>
+          <div class="tech"><span>Python</span><span>FastAPI</span><span>scikit-learn</span><span>XGBoost</span><span>LightGBM</span><span>Optuna</span></div>
+          <div class="plinks"><a href="https://github.com/HussainAhmed75/automl-fastapi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>View code</a></div>
+        </div>
+        <div class="pipe" id="pipe" aria-label="AutoML pipeline">
+          <div class="step"><i>01</i><div>Upload CSV / Excel<small>POST /automl</small></div></div>
+          <div class="step"><i>02</i><div>Profile &amp; detect task<small>types, missing values, cardinality</small></div></div>
+          <div class="step"><i>03</i><div>Clean &amp; preprocess<small>imputation · RobustScaler · one-hot / target encoding</small></div></div>
+          <div class="step"><i>04</i><div>Compare 10+ models<small>cross-validation leaderboard</small></div></div>
+          <div class="step"><i>05</i><div>Tune with Optuna<small>best model only</small></div></div>
+          <div class="step"><i>06</i><div>Report + decisions log<small>PDF or JSON</small></div></div>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="ptag">● MACHINE LEARNING</div>
+        <h3>NYC Taxi Trip Duration</h3>
+        <p>Predicting how long a New York taxi trip will take from pickup time and Haversine distance.</p>
+        <div class="metrics">
+          <div class="metric"><b>1.46M</b><small>trips</small></div>
+          <div class="metric"><b>0.64</b><small>test R²</small></div>
+          <div class="metric"><b>&lt;0.01</b><small>train/test gap</small></div>
+        </div>
+        <div class="bars" id="bars">
+          <div class="bar"><span>Train R²</span><div class="t"><div data-w="64.7"></div></div><b>0.647</b></div>
+          <div class="bar"><span>Test R²</span><div class="t"><div data-w="64.1"></div></div><b>0.641</b></div>
+        </div>
+        <div class="tech"><span>Python</span><span>Pandas</span><span>XGBoost</span><span>Gradio</span></div>
+        <div class="plinks"><a href="https://github.com/HussainAhmed75/nyc-taxi-trip-duration-xgboost" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>View code</a></div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="ptag wip">● IN PROGRESS · ARABIC NLP</div>
+        <h3>Arabic Legal Assistant (RAG)</h3>
+        <p>Ask questions in Arabic or Egyptian dialect about the Egyptian Labour Law (No. 14 of 2025) and get answers grounded in the law, with article citations.</p>
+        <ul>
+          <li>Arabic normalization + hybrid retrieval (BM25 + multilingual embeddings, fused with RRF).</li>
+          <li>Retrieval evaluated with Recall@5 and MRR on Egyptian-Arabic questions.</li>
+        </ul>
+        <div class="tech"><span>RAG</span><span>BM25</span><span>Sentence-Transformers</span><span>LLM</span><span>Gradio</span></div>
+        <div class="plinks"><a href="https://github.com/HussainAhmed75/arabic-legal-rag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>Follow progress</a></div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="ptag">● TEAM PROJECT · GRADE: EXCELLENT</div>
+        <h3>Dr.AI — AI Medical Assistant</h3>
+        <p>Our team graduation project: an assistant that analyzes the symptoms a user describes and returns initial guidance.</p>
+        <div class="tech"><span>Python</span><span>Expert-system logic</span><span>GUI</span></div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="ptag">● DATA ANALYSIS</div>
+        <h3>NTI Data Analysis Exercises</h3>
+        <p>Practical data analysis tasks from my NTI Data Analysis &amp; ML training, using Pandas, NumPy, Matplotlib and Seaborn.</p>
+        <div class="tech"><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span></div>
+        <div class="plinks"><a href="https://github.com/HussainAhmed75/NTI-AI-and-ML-exercises-" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>View notebooks</a></div>
+      </article>
+
+      <article class="proj wide reveal">
+        <div class="ptag">● ROBOTICS · HARDWARE</div>
+        <h3>Underwater ROV — OIROV Team</h3>
+        <p>As head of the electrical team, I led wiring, sensors, power and control systems for an underwater robot. The team qualified for MATE ROV Egypt (2022) and won the "No Pain, No Gain" award.</p>
+        <div class="tech"><span>Arduino</span><span>Sensors</span><span>PCB design</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">// experience</div>
+      <h2>Where I've worked</h2>
+      <p class="sub">Support work taught me to debug under pressure. Training and projects taught me to build.</p>
+    </div>
+    <div class="timeline">
+      <div class="job now reveal">
+        <div class="when">Mar 2026 — Present</div>
+        <h3>Technical Support Engineer</h3>
+        <div class="org">Telecom Egypt (WE) · Full-time</div>
+        <ul>
+          <li>Troubleshoot internet, network and service issues for WE customers and guide them step by step to a fix.</li>
+          <li>Escalate complex incidents with clear documentation to keep resolution fast and accurate.</li>
+        </ul>
+      </div>
+      <div class="job now reveal">
+        <div class="when">Oct 2025 — Present</div>
+        <h3>Data Analysis &amp; Machine Learning Trainee</h3>
+        <div class="org">National Telecommunication Institute (NTI)</div>
+        <ul>
+          <li>Python, Pandas, NumPy, Matplotlib, SQL and core ML algorithms through hands-on data projects.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="when">Mar 2025 — Oct 2025</div>
+        <h3>IT Helpdesk &amp; Network Support</h3>
+        <div class="org">Porto Matrouh — Amer Group · Marsa Matrouh</div>
+        <ul>
+          <li>Provided helpdesk support for hardware, software and network issues.</li>
+          <li>Supervised the installation of CCTV cameras and network switches and configured their IP addressing.</li>
+          <li>Supervised fiber and LAN cabling between residential units.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="when">Mar 2022 — Dec 2023</div>
+        <h3>Head of Electrical Team</h3>
+        <div class="org">OIROV Robotics Team · University student activity</div>
+        <ul>
+          <li>Led the electrical design of an underwater ROV and its testing and fault-finding.</li>
+          <li>Qualified for the MATE ROV Egypt Regional Competition (2022) — "No Pain, No Gain" award.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="when">2016 — Present · part-time</div>
+        <h3>Sales &amp; Store Management</h3>
+        <div class="org">Family car-paint supplies shop · Marsa Matrouh</div>
+        <ul>
+          <li>Handle sales, stock and customers — where I first learned that good decisions start with good records.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:linear-gradient(180deg,transparent,rgba(15,26,46,.6),transparent)">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">// toolbox</div>
+      <h2>Skills</h2>
+      <p class="sub">The tools I use in my projects — not a list of buzzwords.</p>
+    </div>
+    <div class="skills">
+      <div class="sk reveal"><h4><i>ML</i>Machine Learning</h4><div><span>scikit-learn</span><span>XGBoost</span><span>LightGBM</span><span>Random Forest</span><span>Cross-validation</span><span>Optuna</span><span>Feature engineering</span></div></div>
+      <div class="sk reveal"><h4><i>Py</i>Data &amp; Analysis</h4><div><span>Python</span><span>Pandas</span><span>NumPy</span><span>SQL</span><span>Excel</span><span>Power BI</span><span>Matplotlib</span><span>Seaborn</span></div></div>
+      <div class="sk reveal"><h4><i>AI</i>NLP &amp; GenAI</h4><div><span>RAG</span><span>BM25</span><span>Embeddings</span><span>Arabic NLP</span><span>Transformers basics</span></div></div>
+      <div class="sk reveal"><h4><i>&lt;/&gt;</i>Engineering</h4><div><span>FastAPI</span><span>REST APIs</span><span>Git &amp; GitHub</span><span>Jupyter</span><span>Gradio</span><span>n8n</span></div></div>
+      <div class="sk reveal"><h4><i>Net</i>Networking &amp; IT</h4><div><span>TCP/IP</span><span>DHCP / DNS</span><span>Routing &amp; switching</span><span>LAN / Wi-Fi</span><span>Troubleshooting</span></div></div>
+      <div class="sk reveal"><h4><i>⚙</i>Foundations</h4><div><span>Algorithms &amp; DS</span><span>Statistics</span><span>Problem solving</span><span>Arduino</span><span>PCB design</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">// learning</div>
+      <h2>Certifications &amp; achievements</h2>
+      <p class="sub">Courses I completed alongside work and study.</p>
+    </div>
+    <div class="certs">
+      <div class="cert reveal"><div class="ic">HW</div><div><b>HCIA-AI V3.5 Course</b><small>Huawei Talent Online · 2024</small></div></div>
+      <div class="cert reveal"><div class="ic">HW</div><div><b>HCIA-Datacom V1.0 Course</b><small>Huawei Talent Online · 2024</small></div></div>
+      <div class="cert reveal"><div class="ic">IBM</div><div><b>Artificial Intelligence Fundamentals with Capstone Project</b><small>IBM SkillsBuild · 2026</small></div></div>
+      <div class="cert reveal"><div class="ic">IBM</div><div><b>AI Fundamentals: Foundations for Understanding AI</b><small>IBM SkillsBuild · 2025</small></div></div>
+      <div class="cert reveal"><div class="ic">ITI</div><div><b>Practical Machine Learning for Data Scientists</b><small>ITI AI Academy / Mahara-Tech · 2026</small></div></div>
+      <div class="cert reveal"><div class="ic">HP</div><div><b>Data Science &amp; Analytics</b><small>HP LIFE · 2025</small></div></div>
+      <div class="cert reveal"><div class="ic">HP</div><div><b>AI for Business Professionals</b><small>HP LIFE · 2025</small></div></div>
+      <div class="cert reveal"><div class="ic">EF</div><div><b>EF SET English Certificate — C2 (85/100)</b><small>EF Standard English Test</small></div></div>
+      <div class="cert reveal"><div class="ic">EN</div><div><b>Human Development Program</b><small>Enactus Egypt &amp; UNICEF</small></div></div>
+    </div>
+    <div class="achv">
+      <div class="ach reveal"><b>500+ problems</b><p>Solved in competitive programming; ICPC/CPC participant (2023).</p></div>
+      <div class="ach reveal"><b>MATE ROV award</b><p>"No Pain, No Gain" award with the OIROV robotics team (2022).</p></div>
+      <div class="ach reveal"><b>Team project: Excellent</b><p>Dr.AI graduation project graded Excellent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div class="eyebrow">// contact</div>
+      <h2>Let's work together</h2>
+      <p>I'm looking for my first role in AI, machine learning or data — in Egypt, remote, or abroad. Feel free to reach out.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:hrfy330@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>hrfy330@gmail.com</a>
+        <button class="btn" id="copyMail" type="button" style="background:none;color:inherit;cursor:pointer;font-family:inherit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy email</button>
+        <a class="btn" href="https://www.linkedin.com/in/hussian-ahmed" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/HussainAhmed75" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="yr">2026</span> Hussain Ahmed · Hosted on GitHub Pages</footer>
+<div class="copy-toast" id="toast">Email copied</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // nav state + mobile menu
+  var nav = document.getElementById("nav"), links = document.getElementById("links");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 20); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+  document.getElementById("menuBtn").addEventListener("click", function(){ links.classList.toggle("open"); });
+  links.addEventListener("click", function(e){ if (e.target.tagName === "A") links.classList.remove("open"); });
+
+  // typed roles
+  var roles = ["machine learning systems", "data pipelines & dashboards", "Arabic NLP tools", "APIs that serve models"];
+  var el = document.getElementById("typed");
+  if (!reduce) {
+    var ri = 0, ci = roles[0].length, del = true;
+    setTimeout(function tick(){
+      var w = roles[ri];
+      if (del) { ci--; if (ci === 0) { del = false; ri = (ri + 1) % roles.length; } }
+      else { ci++; if (ci === roles[ri].length) { del = true; el.textContent = roles[ri]; return setTimeout(tick, 1800); } }
+      el.textContent = (del ? w : roles[ri]).slice(0, ci);
+      setTimeout(tick, del ? 35 : 65);
+    }, 2200);
+  }
+
+  // reveal on scroll + counters + bars
+  function count(span){
+    var target = parseFloat(span.getAttribute("data-count")), dec = parseInt(span.getAttribute("data-dec") || "0", 10);
+    if (reduce) { span.textContent = target.toFixed(dec); return; }
+    var start = null;
+    function step(ts){ if (!start) start = ts; var p = Math.min((ts - start) / 1400, 1); var v = target * (1 - Math.pow(1 - p, 3));
+      span.textContent = v.toFixed(dec); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add("in");
+        en.target.querySelectorAll("[data-count]").forEach(count);
+        en.target.querySelectorAll("[data-w]").forEach(function(b){ b.style.width = b.getAttribute("data-w") + "%"; });
+        io.unobserve(en.target);
+      });
+    }, {threshold:.15});
+    revealEls.forEach(function(e){ io.observe(e); });
+  } else {
+    revealEls.forEach(function(e){ e.classList.add("in"); });
+    document.querySelectorAll("[data-count]").forEach(count);
+    document.querySelectorAll("[data-w]").forEach(function(b){ b.style.width = b.getAttribute("data-w") + "%"; });
+  }
+
+  // pipeline animation
+  var steps = document.querySelectorAll("#pipe .step"), si = 0;
+  if (steps.length) {
+    steps[0].classList.add("on");
+    if (!reduce) setInterval(function(){ steps[si].classList.remove("on"); si = (si + 1) % steps.length; steps[si].classList.add("on"); }, 1300);
+  }
+
+  // copy email
+  var toast = document.getElementById("toast");
+  document.getElementById("copyMail").addEventListener("click", function(){
+    var mail = "hrfy330@gmail.com";
+    function done(){ toast.classList.add("show"); setTimeout(function(){ toast.classList.remove("show"); }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(done, function(){ window.location.href = "mailto:" + mail; });
+    else window.location.href = "mailto:" + mail;
+  });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // neural-network background
+  var c = document.getElementById("net"), ctx = c.getContext && c.getContext("2d");
+  if (!ctx) return;
+  var W, H, pts = [], dpr = Math.min(window.devicePixelRatio || 1, 2), mouse = {x:-999, y:-999};
+  function resize(){
+    W = c.clientWidth; H = c.clientHeight; c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(Math.min(90, (W * H) / 16000)); pts = [];
+    for (var i = 0; i < n; i++) pts.push({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35, r:Math.random()*1.6+.6});
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      for (var j = i + 1; j < pts.length; j++) {
+        var q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = dx*dx + dy*dy;
+        if (d < 15000) { ctx.strokeStyle = "rgba(34,211,238," + (0.16 * (1 - d / 15000)) + ")"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+      }
+      var md = (p.x - mouse.x) * (p.x - mouse.x) + (p.y - mouse.y) * (p.y - mouse.y);
+      ctx.fillStyle = md < 12000 ? "rgba(245,165,36,.9)" : "rgba(159,179,207,.55)";
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  window.addEventListener("resize", function(){ resize(); if (reduce) draw(); });
+  c.parentElement.addEventListener("mousemove", function(e){ var r = c.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  c.parentElement.addEventListener("mouseleave", function(){ mouse.x = mouse.y = -999; });
+  resize(); draw();
+})();
+</script>
+</body>
+</html>
