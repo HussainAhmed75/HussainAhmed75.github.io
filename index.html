@@ -323,15 +323,24 @@ footer{padding:36px 0 48px;color:var(--dim);font-size:14px;text-align:center}
       </article>
 
       <article class="proj reveal">
-        <div class="ptag wip">● IN PROGRESS · ARABIC NLP</div>
+        <div class="ptag live">● ARABIC NLP · RAG</div>
         <h3>Arabic Legal Assistant (RAG)</h3>
-        <p>Ask questions in Arabic or Egyptian dialect about the Egyptian Labour Law (No. 14 of 2025) and get answers grounded in the law, with article citations.</p>
+        <p>Ask about the Egyptian Labour Law (No. 14 of 2025) in Egyptian colloquial Arabic and get the right articles, with citations. The hard part: people say "ترفدني", the law says "فصل العامل".</p>
+        <div class="metrics">
+          <div class="metric"><b>0.78</b><small>Recall@5 (held-out)</small></div>
+          <div class="metric"><b>301</b><small>articles indexed</small></div>
+          <div class="metric"><b>CPU</b><small>ONNX, no GPU</small></div>
+        </div>
+        <div class="bars">
+          <div class="bar"><span>BM25</span><div class="t"><div data-w="50"></div></div><b>0.50</b></div>
+          <div class="bar"><span>bge-m3</span><div class="t"><div data-w="72"></div></div><b>0.72</b></div>
+          <div class="bar"><span>+ Reranker</span><div class="t"><div data-w="78"></div></div><b>0.78</b></div>
+        </div>
         <ul>
-          <li>Arabic normalization + hybrid retrieval (BM25 + multilingual embeddings, fused with RRF).</li>
-          <li>Retrieval evaluated with Recall@5 and MRR on Egyptian-Arabic questions.</li>
+          <li>Evaluated on 40 held-out questions never used for tuning; a colloquial dictionary that looked good on the dev set did nothing there, so it was not counted.</li>
         </ul>
-        <div class="tech"><span>RAG</span><span>BM25</span><span>Sentence-Transformers</span><span>LLM</span><span>Gradio</span></div>
-        <div class="plinks"><a href="https://github.com/HussainAhmed75/arabic-legal-rag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>Follow progress</a></div>
+        <div class="tech"><span>RAG</span><span>BM25</span><span>bge-m3</span><span>Reranker</span><span>ONNX Runtime</span><span>Gradio</span></div>
+        <div class="plinks"><a href="https://github.com/HussainAhmed75/arabic-legal-rag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>View code</a></div>
       </article>
 
       <article class="proj reveal">
